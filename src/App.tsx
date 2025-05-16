@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 
 function App() {
   // const API_ALL = "https://restcountries.com/v3.1/all";
-  const [search, setSearch] = useState("E");
+  const [search, setSearch] = useState("EGY");
   const [country, setCountry] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
