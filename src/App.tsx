@@ -3,10 +3,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import type { Country } from "./utils";
 import Card from "./component/Card";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function App() {
   // const API_ALL = "https://restcountries.com/v3.1/all";
-  const [search, setSearch] = useState("Egypt");
+  const [search, setSearch] = useState("E");
   const [country, setCountry] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
@@ -50,6 +52,18 @@ function App() {
 
   useEffect(() => {
     handleSearch();
+  }, []);
+  useGSAP(() => {
+    gsap.fromTo(
+      "header",
+      { opacity: 0, y: -120 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.3,
+        ease: "power2.inOut",
+      }
+    );
   }, []);
 
   return (

@@ -3,3 +3,7 @@
 * {
   box-sizing: border-box;
 }
+body {
+  margin-inline: auto;
+  max-width: 1000px;
+}
