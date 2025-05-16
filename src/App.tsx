@@ -1,24 +1,19 @@
 import "./App.css";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Country } from "./utils";
 import Card from "./component/Card";
+
 function App() {
   // const API_ALL = "https://restcountries.com/v3.1/all";
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Egypt");
   const [country, setCountry] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
-    validToSearch: false,
+    validToSearch: true,
     ValidCountry: false,
   });
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    setInputValid({
-      validToSearch: e.target.value.trim() !== "",
-      ValidCountry: false,
-    });
-  };
+
   const handleSearch = () => {
     setIsLoading(true);
     setCountry([]); // Clear previous results
@@ -44,6 +39,19 @@ function App() {
         }, 100);
       });
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setInputValid({
+      validToSearch: e.target.value.trim() !== "",
+      ValidCountry: false,
+    });
+  };
+
+  useEffect(() => {
+    handleSearch();
+  }, []);
+
   return (
     <div className="min-h-screen">
       <header className="flex flex-col items-center  gap-6 p-8  text-white rounded-b-xl shadow-2xl mb-10">
