@@ -39,7 +39,9 @@ function App() {
         });
       })
       .finally(() => {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 100);
       });
   };
   return (
